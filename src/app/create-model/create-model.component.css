@@ -1,0 +1,13 @@
+.image {
+  background: grey;
+  color: white;
+}
+.container{
+  background: lightgray;
+  border: 1px solid black;
+  box-shadow: 5px 10px 5px darkgrey;
+}
+.btn{
+  box-shadow: 5px 5px 5px darkgrey;
+}
+

@@ -1,0 +1,51 @@
+<div class="container m-3">
+  <form [formGroup]="form" (submit)="submit()">
+    <textarea class="col form form-control m-1"
+              formControlName="chapter"
+              placeholder="Comment text" required>
+    </textarea>
+    <div
+      *ngIf="form.controls['chapter'].invalid && (form.controls['chapter'].dirty || form.controls['chapter'].touched)"
+      class="alert alert-danger">Заполните поле
+    </div>
+    <input class="col form-control m-1"
+           formControlName="name"
+           placeholder="Author name"
+           type="text" required>
+    <div *ngIf="form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)"
+         class="alert alert-danger">Напишите Ваше Имя (Ник), пожалуйста!
+    </div>
+    <div class="row align-items-center">
+      <input class="col-2 m-1 form-control btn btn-info"
+             type="file"
+             accept="image/jpeg, image/png"/>
+      <div class="col-8">Возможно загрущить только файлы с разрешением <b>.jpeg .png</b></div>
+    </div>
+    <div class="row justify-content-end">
+      <button class=" btn btn-success col-2 m-1 "
+              [disabled]="form.invalid"
+      >Send
+      </button>
+    </div>
+  </form>
+  <br>
+  <ng-container class="container" *ngFor="let comment of comm; let i = index">
+    <div class="row">
+      <div class="col-2 image"><img src="{{comment.file}}" alt="Place for your photo">
+      </div>
+      <div class="col-8">
+        <h4>{{comment.name}}</h4>
+        <textarea rows="5" cols="80" readonly>{{comment.text}}</textarea>
+      </div>
+      <div class="col-2 align-self-end">
+        <button class="btn btn-outline-danger" value="Del" (click)="deleteTask(i)">Delete</button>
+        <button class="btn btn-outline-warning" (click)="editText(i)">Edit</button>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-warning m-1" (click)="replyText(i)">Reply</button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
